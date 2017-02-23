@@ -11,11 +11,6 @@ type Page struct {
     Body  []byte
 }
 
-func (p *Page) save() error {
-    filename := p.Title + ".html"
-    return ioutil.WriteFile(filename, p.Body, 0600)
-}
-
 func loadPage(title string) (*Page, error) {
     filename := title + ".html"
     body, err := ioutil.ReadFile(filename)
@@ -26,13 +21,13 @@ func loadPage(title string) (*Page, error) {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+    fmt.Fprintf(w, "This is a fucking server that's serving you up %s!", r.URL.Path[1:])
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
     title := r.URL.Path[len("/view/"):]
     p, _ := loadPage(title)
-    fmt.Fprintf(w, "<div>%s</div>", p.Body)
+    fmt.Fprintf(w, "%s", p.Body)
 }
 
 func main() {

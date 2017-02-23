@@ -1,0 +1,13 @@
+
+# Search for Tracks to get the necessary URI
+curl -X GET "https://api.spotify.com/v1/search?q=ace+of+spades&type=track" -H "Accept: application/json" -H "Authorization: Bearer
+BQDD-4KnF76OGMAV6wXO7KT1lfay3xCSU1qsV9HxlI4wGLmP7MMehRjvzdC-2huJASnJtdBn7MikLxYVW-ghp2JS1Dq5EUVmZi4EhG0N_b18xFOC8iiwLdUcC5Tl1c4GeqpszpP8QBPZtDVg1SOycLe9RZO6STrWWBYDejJvpqDWvZI8ZBvQD0NjzOWOq3YObfmUGsikcxRdiBiX95V69-_L7ROcwzzbe5gogWw7c8pYAEId2FyCBskRzA" | jq '.tracks.items[]|[.name,.artists[].name,.type,.uri]'
+
+# Get the Playlist with IDs
+curl -X GET "https://api.spotify.com/v1/users/jessica43452/playlists" -H "Accept: application/json" -H "Authorization: Bearer BQDD-4KnF76OGMAV6wXO7KT1lfay3xCSU1qsV9HxlI4wGLmP7MMehRjvzdC-2huJASnJtdBn7MikLxYVW-ghp2JS1Dq5EUVmZi4EhG0N_b18xFOC8iiwLdUcC5Tl1c4GeqpszpP8QBPZtDVg1SOycLe9RZO6STrWWBYDejJvpqDWvZI8ZBvQD0NjzOWOq3YObfmUGsikcxRdiBiX95V69-_L7ROcwzzbe5gogWw7c8pYAEId2FyCBskRzA" | jq '.items[]|[.name,.id]'
+
+# Add a Track by URI to a Playist by ID
+curl -X POST "https://api.spotify.com/v1/users/jessica43452/playlists/1k3lcp2mtKcsW5elb56zE4/tracks?uris=spotify%3Atrack%3A1T45V6RDj1vTLFY6Cw4tNf" -H "Accept: application/json" -H "Authorization: Bearer BQDD-4KnF76OGMAV6wXO7KT1lfay3xCSU1qsV9HxlI4wGLmP7MMehRjvzdC-2huJASnJtdBn7MikLxYVW-ghp2JS1Dq5EUVmZi4EhG0N_b18xFOC8iiwLdUcC5Tl1c4GeqpszpP8QBPZtDVg1SOycLe9RZO6STrWWBYDejJvpqDWvZI8ZBvQD0NjzOWOq3YObfmUGsikcxRdiBiX95V69-_L7ROcwzzbe5gogWw7c8pYAEId2FyCBskRzA"
+
+# Show Tracks in Playlist
+curl -X GET "https://api.spotify.com/v1/users/jessica43452/playlists/1k3lcp2mtKcsW5elb56zE4/tracks" -H "Accept: application/json" -H "Authorization: Bearer BQDD-4KnF76OGMAV6wXO7KT1lfay3xCSU1qsV9HxlI4wGLmP7MMehRjvzdC-2huJASnJtdBn7MikLxYVW-ghp2JS1Dq5EUVmZi4EhG0N_b18xFOC8iiwLdUcC5Tl1c4GeqpszpP8QBPZtDVg1SOycLe9RZO6STrWWBYDejJvpqDWvZI8ZBvQD0NjzOWOq3YObfmUGsikcxRdiBiX95V69-_L7ROcwzzbe5gogWw7c8pYAEId2FyCBskRzA" | jq '.items[].track.name'
